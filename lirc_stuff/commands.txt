@@ -1,0 +1,22 @@
+amsung_BN59-00856ASamsung_BN59-00856A
+# or 
+sudo /etc/init.d/lirc stop
+sudo /etc/init.d/lirc start
+
+# edit config files
+sudo vi /etc/modules    # start lirc module automatically
+# /etc/modules also specifies in and out pins
+#  lirc_rpi gpio_in_pin=22 gpio_out_pin=24
+sudo vi /etc/lirc/hardware.conf    # Module addresses and stuff
+
+sudo vi /etc/lirc/lircd.conf       # Setup remote codes
+
+
+# To update the codes, modify code file, then restart
+sudo vi /etc/lirc/lircd.conf
+sudo /etc/init.d/lirc restart
+
+
+irsend LIST Samsung_BN59-00856A ""
+irsend SEND_ONCE Samsung_BN59-00856A KEY_POWER
+irsend SEND_ONCE Samsung_BN59-00856A KEY_MUTE
