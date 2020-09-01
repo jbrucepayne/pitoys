@@ -1,0 +1,6 @@
+Plug the device into the PC.
+Tap the reset button twice, quickly.  This should bring up the file explorer.
+Copy the UF2 file that is the main firmware.  It will reboot and that will install the main firmware.  
+Copy the circuitpythonbundle/lib files into the device in the lib directory. This way it can find the libs.
+edit the code.py file which runs the program.
+
