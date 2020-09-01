@@ -1,0 +1,14 @@
+Configuring FeatherWing Relay with the Circuit Playground Express and CircuitPython
+
+Logic side
+Set the 3.3 V output and ground to the labeled 3V and Gnd pins on the side of the relay.
+Connect a digital IO pin to the Signal port next to those pins.  
+
+Load side
+Connect a wired plug with the black wire directly to the output load.
+Connect the white wire on the plug side to the COM connection of the relay.
+Connect the white wire from the load side to the NO connection of the relay.
+
+Controller side
+Configure the digital IO pin connected to the relay as a digital output.
+Set the digital IO pin to true (high, 3.3v) to close the relay and turn on the load.
