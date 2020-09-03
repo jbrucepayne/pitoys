@@ -1,0 +1,7 @@
+Configuring AD8495 board to use K type thermocouple for temp readings
+
+3.3V power and ground go to those pins.
+Out pin gets wired to analog input pin on the circuit playground.
++ and - leads of the thermistor mount to the board via the screw bracket.
+
+Temperature (in C) = InputVoltage - 1.25 / 0.005 
