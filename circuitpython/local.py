@@ -16,8 +16,8 @@ def setupAllTouchInputs():
     touch_A6 = touchio.TouchIn(board.A6)
     touch_A7_TX = touchio.TouchIn(board.TX)
 
-def color_volume(volume):
-    return 200, volume * (255 // NUM_PIXELS), 0
+def color_volume(volume, numPixels):
+    return 200, volume * (255 // numPixels), 0
 
 def color_random():
     return (random.randrange(255),random.randrange(255),random.randrange(255))
