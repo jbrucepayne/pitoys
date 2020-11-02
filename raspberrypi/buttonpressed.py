@@ -6,7 +6,7 @@ import time
 
 callInterval = datetime.timedelta(seconds=120)
 
-iftttUrl = "https://maker.ifttt.com/trigger/WifiButtonPressed/with/key/cDzHzY8eqRhX2hv0O0As-v"
+iftttUrl = "https://maker.ifttt.com/trigger/"
 
 def button_callback(channel):
   global lastButtonPress
