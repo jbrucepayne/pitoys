@@ -1,12 +1,22 @@
 #!/usr/bin/python
 import RPi.GPIO as GPIO
 import datetime
+import requests
 import time
 
+callInterval = datetime.timedelta(seconds=120)
+
+iftttUrl = "https://maker.ifttt.com/trigger/WifiButtonPressed/with/key/cDzHzY8eqRhX2hv0O0As-v"
+
 def button_callback(channel):
+  global lastButtonPress
   buttonState = GPIO.input(buttonPin)
-  GPIO.output(lightPin, buttonState == GPIO.HIGH)
- 
+  GPIO.output(lightPin, buttonState == GPIO.LOW)
+  print datetime.datetime.now() - lastButtonPress 
+  if ((datetime.datetime.now() - lastButtonPress) > callInterval):
+    print "here"
+    #requests.post(iftttUrl)
+    lastButtonPress = datetime.datetime.now()
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
@@ -21,7 +31,8 @@ GPIO.setup(buttonPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 #GPIO.add_event_detect(buttonPin,GPIO.FALLING,callback=button_callback) 
 GPIO.add_event_detect(buttonPin,GPIO.BOTH,callback=button_callback) 
 
-print "Starting to blink GPIO 12 - lightPin"  + datetime.datetime.now().isoformat()
+lastButtonPress = datetime.datetime.now() - callInterval
+
 while True:
   #print "GPIO On : " + datetime.datetime.now().isoformat()
   #GPIO.output(lightPin, True)
