@@ -50,3 +50,16 @@ def SetupNeopixelsStrand(pin, numPixels):
 
 def get_voltage(pin):
     return (pin.value * 3.3) / 65536
+
+def color_for_temperature (temperature):
+    if temperature >= 60:
+        return (0,255,0)
+    if temperature >= 50:
+        return (0,0,255)
+    if temperature >= 40:
+        return (255,255,0)
+    if temperature < 40:
+        return (255,0,0)
+
+    # White is default if we don't know what else to do!
+    return (255,255,255)
