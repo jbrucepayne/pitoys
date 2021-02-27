@@ -54,3 +54,5 @@ sudo reboot now
 when back, run updates
 sudo apt-get update -y & sudo apt-get upgrade -y
 
+clone in this repo and you are off to the races!
+git clone https://github.com/jbrucepayne/pitoys.git
