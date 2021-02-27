@@ -1,0 +1,56 @@
+For security reasons, ssh is no longer enabled by default. To enable it you need to place an empty file named ssh (no extension) in the root of the boot disk.
+
+From windows command prompt:
+REM Switch to SD Card directory  (change disk name if needed)
+E:
+REM Create empty file called ssh
+type NUL >> ssh
+
+Create the file wpa_supplicant.conf in the root level. Add the wifi info
+
+country=US
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+
+network={
+    ssid="NETWORK_NAME"
+    psk="PASSWORD"
+}
+
+Take out the card and boot into the PI.
+use default login
+
+REM Clear out old pi reference then connect
+ssh-keygen -R raspberrypi.local
+ssh pi@raspberrypi.local
+(raspberry)
+
+REM Change hostname and password, then permanenly enable ssh
+sudo raspi-config
+System->Hostname
+System->Password
+Interface->SSH
+
+Still in raspi-config, optional but recommended
+Localization->TimeZone
+Advanced->Extend filesystem (allow system to use entire card which is good!)
+
+Create new user so you don't have to use the pi user for everything (bad security)
+Give good powers to the user as well
+sudo adduser <username>
+sudo usermod -a -G adm,dialout,cdrom,sudo,audio,video,plugdev,games,users,input,netdev,gpio,i2c,spi <username>
+Test that you can sudo 
+sudo su - <username>
+
+Disallow SSH for the PI user (security)
+sudo vi /etc/ssh/sshd_config
+add line
+DenyUsers pi
+
+reboot
+sudo reboot now
+(May have to power cycle and wait here...)
+
+when back, run updates
+sudo apt-get update -y & sudo apt-get upgrade -y
+
