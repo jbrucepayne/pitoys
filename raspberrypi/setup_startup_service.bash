@@ -1,20 +1,21 @@
 # Note: Script must be run as root (sudo OK) because it writes file in LIB directory
 
 # Create startup shell that runs python script
-echo "/usr/bin/python /home/pi/pitoys/raspberrypi/buttonpressed.py" > /home/pi/startup.bash
-chmod 775 /home/pi/startup.bash
+echo "/usr/bin/python /home/bruce/pitoys/raspberrypi/buttonpressed.py" > /home/bruce/startup.bash
+# for debug, add > log.txt 2>&1 at the end to cause all info to be written to a log file in the home dir
+chmod 775 /home/bruce/startup.bash
 # Could be worth testing the startup script now - optional
-# /bin/bash /home/pi/startup.bash
+# /bin/bash /home/bruce/startup.bash
 
 # Now create the service file for systemctl
 echo "[Unit]" > /lib/systemd/system/startup.service
-echo "Description=Run startup python loop" >> /lib/systemd/system/startup.service
+echo "Description=Service Description" >> /lib/systemd/system/startup.service
 echo "After=multi-user.target" >> /lib/systemd/system/startup.service
 echo "" >> /lib/systemd/system/startup.service
 echo "[Service]" >> /lib/systemd/system/startup.service
-echo "WorkingDirectory=/home/pi/" >> /lib/systemd/system/startup.service
-echo "User=pi" >> /lib/systemd/system/startup.service
-echo "ExecStart=/bin/bash /home/pi/startup.bash" >> /lib/systemd/system/startup.service
+echo "WorkingDirectory=/home/bruce/" >> /lib/systemd/system/startup.service
+echo "User=bruce" >> /lib/systemd/system/startup.service
+echo "ExecStart=/bin/bash /home/bruce/startup.bash" >> /lib/systemd/system/startup.service
 echo "" >> /lib/systemd/system/startup.service
 echo "[Install]" >> /lib/systemd/system/startup.service
 echo "WantedBy=multi-user.target" >> /lib/systemd/system/startup.service
