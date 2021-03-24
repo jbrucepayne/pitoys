@@ -13,6 +13,7 @@ from gpiozero import LED
 import horoscope
 import joke
 import weather
+import news
 
 # hardware pin IDs in use on pi board
 hookPin = 15
@@ -40,7 +41,7 @@ def handle_number(number):
     elif int(number) == 5:
         speak_it_to_me (joke.get_joke())
     elif int(number) == 6:
-        speak_it_to_me ("six")
+        speak_it_to_me (news.get_news())
     elif int(number) == 7:
         speak_it_to_me ("seven")
     elif int(number) == 8:
@@ -57,7 +58,7 @@ def get_help_message():
     "Dial 3 for the word 3. " +
     "Dial 4 for a horoscope. " +
     "Dial 5 for a joke. " +
-    "Dial 6 for the word 6. " +
+    "Dial 6 for news. " +
     "Dial 7 for the word 7. " +
     "Dial 8 for the sound of silence. " +
     "Dial 9 for weather. " +
